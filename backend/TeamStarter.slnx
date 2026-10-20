@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/TeamStarter.Api/TeamStarter.Api.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/TeamStarter.Api.Tests/TeamStarter.Api.Tests.csproj" />
+  </Folder>
+</Solution>

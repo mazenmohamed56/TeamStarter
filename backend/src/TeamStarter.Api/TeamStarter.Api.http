@@ -1,0 +1,28 @@
+@api = http://localhost:5080/api
+
+GET {{api}}/tasks
+
+###
+
+POST {{api}}/tasks
+Content-Type: application/json
+
+{
+  "title": "Learn EF Core migrations",
+  "description": "Week 2"
+}
+
+###
+
+PUT {{api}}/tasks/1
+Content-Type: application/json
+
+{
+  "title": "Learn EF Core migrations",
+  "description": "Week 2",
+  "isDone": true
+}
+
+###
+
+DELETE {{api}}/tasks/1

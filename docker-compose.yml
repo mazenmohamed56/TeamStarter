@@ -1,0 +1,16 @@
+# Local development database. Start with:  docker compose up -d
+# TODO (Week 4): add services for the API and the frontends (each with its own Dockerfile)
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: teamstarter-db
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "TeamStarter_Dev_123!" # dev only — must match appsettings.json
+    ports:
+      - "1433:1433"
+    volumes:
+      - teamstarter-db:/var/opt/mssql
+
+volumes:
+  teamstarter-db:

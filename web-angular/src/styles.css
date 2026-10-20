@@ -1,0 +1,22 @@
+:root {
+  font-family: system-ui, 'Segoe UI', sans-serif;
+  color: #1f2328;
+  background: #f6f8fa;
+}
+body { margin: 0; }
+.topbar { display: flex; align-items: center; gap: 12px; padding: 12px 24px; background: #fff; border-bottom: 1px solid #d0d7de; }
+.topbar nav { margin-inline-start: auto; display: flex; gap: 16px; }
+.topbar a { color: inherit; text-decoration: none; }
+.badge { font-size: 12px; padding: 2px 8px; border-radius: 99px; background: #dd0031; color: #fff; }
+.container { max-width: 640px; margin: 32px auto; padding: 0 16px; }
+.row { display: flex; gap: 8px; }
+.row input { flex: 1; }
+input:not([type='checkbox']) { padding: 8px 10px; border: 1px solid #d0d7de; border-radius: 6px; font: inherit; }
+button { padding: 8px 14px; border: 0; border-radius: 6px; background: #1f2328; color: #fff; font: inherit; cursor: pointer; }
+button:disabled { opacity: 0.5; }
+button.link { background: none; color: #cf222e; padding: 4px 8px; }
+.list { list-style: none; padding: 0; margin-top: 16px; }
+.list li { display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; background: #fff; border: 1px solid #d0d7de; border-radius: 6px; margin-bottom: 8px; }
+.list li.done label { text-decoration: line-through; color: #8c959f; }
+.error { color: #cf222e; }
+.muted { color: #8c959f; }
