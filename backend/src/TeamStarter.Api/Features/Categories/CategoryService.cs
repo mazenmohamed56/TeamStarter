@@ -55,10 +55,19 @@ public class CategoryService(AppDbContext db) : ICategoryService
 
     public async Task DeleteAsync(int id, CancellationToken ct)
     {
-        // Nothing else references Category, so this removes only that row.
         var category = await FindAsync(id, ct);
+        if (await db.Services.AnyAsync(s => s.CategoryId == id, ct))
+            throw new ConflictException($"Category {id} cannot be deleted because it has services.");
+
         db.Categories.Remove(category);
-        await db.SaveChangesAsync(ct);
+        try
+        {
+            await db.SaveChangesAsync(ct);
+        }
+        catch (DbUpdateException ex) when (IsForeignKeyViolation(ex))
+        {
+            throw new ConflictException($"Category {id} cannot be deleted because it has services.");
+        }
     }
 
     private async Task EnsureUniqueNameAsync(string name, int? excludingId, CancellationToken ct)
@@ -95,6 +104,17 @@ public class CategoryService(AppDbContext db) : ICategoryService
         return false;
     }
 
+    private static bool IsForeignKeyViolation(DbUpdateException exception)
+    {
+        for (Exception? current = exception; current is not null; current = current.InnerException)
+        {
+            if (current is SqlException { Number: 547 })
+                return true;
+        }
+
+        return false;
+    }
+
     private async Task<Category> FindAsync(int id, CancellationToken ct) =>
         await db.Categories.FindAsync([id], ct) ?? throw new NotFoundException($"Category {id} was not found.");
 
@@ -109,3 +129,6 @@ public class CategoryService(AppDbContext db) : ICategoryService
     private static CategoryDto ToDto(Category category) =>
         new(category.Id, category.Name, category.Description, category.CreatedAtUtc);
 }
+
+
+

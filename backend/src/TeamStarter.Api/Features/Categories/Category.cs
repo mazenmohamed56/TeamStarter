@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using TeamStarter.Api.Data;
+using TeamStarter.Api.Features.Services;
 
 namespace TeamStarter.Api.Features.Categories;
 
@@ -9,6 +11,7 @@ public class Category
     public required string Name { get; set; }
     public string? Description { get; set; }
     public DateTime CreatedAtUtc { get; set; } = DateTime.UtcNow;
+    public ICollection<Service> Services { get; set; } = [];
 }
 
 public class CategoryConfiguration : IEntityTypeConfiguration<Category>
@@ -18,5 +21,10 @@ public class CategoryConfiguration : IEntityTypeConfiguration<Category>
         builder.Property(c => c.Name).HasMaxLength(100);
         builder.Property(c => c.Description).HasMaxLength(500);
         builder.HasIndex(c => c.Name).IsUnique();
+
+        builder.HasData(CatalogSeed.Categories);
     }
 }
+
+
+

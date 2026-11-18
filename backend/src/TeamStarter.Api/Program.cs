@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using TeamStarter.Api.Common;
 using TeamStarter.Api.Data;
 using TeamStarter.Api.Features.Categories;
+using TeamStarter.Api.Features.Services;
 using TeamStarter.Api.Features.Tasks;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +20,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 // Feature services — register every new feature here
 builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IServiceService, ServiceService>();
 builder.Services.AddScoped<ITaskService, TaskService>();
 
 // The Vue/Angular dev servers proxy /api, but CORS is needed when calling the API directly
@@ -58,3 +60,5 @@ app.Run();
 
 // Exposed for integration tests (WebApplicationFactory<Program>)
 public partial class Program;
+
+

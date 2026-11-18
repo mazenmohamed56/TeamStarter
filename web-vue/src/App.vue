@@ -9,6 +9,7 @@ import { RouterLink, RouterView } from 'vue-router'
     <nav>
       <RouterLink to="/tasks">Tasks</RouterLink>
       <RouterLink to="/categories">Categories</RouterLink>
+      <RouterLink to="/services">Services</RouterLink>
       <!-- TODO (Week 3): Login / Logout links -->
     </nav>
   </header>
@@ -16,3 +17,4 @@ import { RouterLink, RouterView } from 'vue-router'
     <RouterView />
   </main>
 </template>
+

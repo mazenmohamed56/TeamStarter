@@ -6,8 +6,10 @@ const router = createRouter({
     { path: '/', redirect: '/tasks' },
     { path: '/tasks', component: () => import('@/features/tasks/TasksView.vue') },
     { path: '/categories', component: () => import('@/features/categories/CategoriesView.vue') },
+    { path: '/services', component: () => import('@/features/services/ServicesView.vue') },
     // TODO (Week 3): /login route + a beforeEach guard for authenticated routes
   ],
 })
 
 export default router
+
